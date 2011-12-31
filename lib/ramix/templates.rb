@@ -1,0 +1,1 @@
+require 'ramix/templates/mongodb/mongoid'
