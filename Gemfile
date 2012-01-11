@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
-gem "thor", "~> 0.14.6"
+gem 'thor', '~> 0.14.6'
+gem 'activesupport'
 
 group :development do
   gem "yard", "~> 0.6.0"
