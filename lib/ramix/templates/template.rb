@@ -5,10 +5,10 @@ module Ramix
 		COMMANDS = [ :gem, :run, :generate, :remove_file, :gsub_file, :inject_into_file ]
 		#@@commands = [ "apply", "run", "gem", "generate", "initializer", "remove_file", "inject_into_file", "gsub_file", "file" ]
 		#COMMANDS = [ 'gem', 'run', 'generate', 'remove_file', 'gsub_file', 'inject_into_file' ]
-		attr_reader :name, :version, :rails_version
+		attr_reader :name, :version, :rails_version, :output_buffer
 
 		def initialize(rails_version = nil)
-			@name          = self.name.split('::').pop.underscore
+			@name          = self.class.name.split('::').pop.underscore
 			@rails_version = rails_version
 			@version       = self.class.newest_version
 			@output_buffer = "# >====================== [#{@name}] =======================< \n\n"

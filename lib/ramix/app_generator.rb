@@ -31,14 +31,14 @@ module Ramix
       "ramix new APP_PATH [options] \n or: ramix create TEMPLATE_PATH [options]"
     end
     
-    # According to the options build template 
+    # According to the options build template
     def build_template(options)
       Ramix::Templates::Builder.new do
         import Ramix::Source
         import Ramix::Mongoid, Rails::VERSION::STRING
         #import :source   if ARGV.include?('--source')
         #import :mongoid  if ARGV.include?('--mongoid')
-      end.run('path')
+      end.run
     end
 
   end
