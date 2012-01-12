@@ -2,7 +2,7 @@ require 'thor/group'
 require 'ramix/templates'
 
 module Ramix
-	class TemplateGenerator < Thor::Group
+  class TemplateGenerator < Thor::Group
 
     
     class_option :source,           :type => :string, :aliases => "-S", :group => :ramix, :default => "http://rubygems.org",

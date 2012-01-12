@@ -1,9 +1,9 @@
 module Ramix
-	module Templates
-		class	Builder
+  module Templates
+    class Builder
 
-			def initialize(default_template = nil, &block)
-      	@import = []
+      def initialize(default_template = nil, &block)
+        @import = []
 
         if default_template.nil?
           require 'tempfile'
@@ -12,12 +12,12 @@ module Ramix
 
         @template = default_template
 
-      	instance_eval(&block) if block_given?
-    	end
+        instance_eval(&block) if block_given?
+      end
 
-    	def import(template, rails_version = nil)
+      def import(template, rails_version = nil)
         @import << proc { template.new(rails_version) }
-    	end
+      end
 
       # Generate the template file path
       def run
@@ -31,6 +31,6 @@ module Ramix
         @template
       end
 
-		end
-	end
+    end
+  end
 end

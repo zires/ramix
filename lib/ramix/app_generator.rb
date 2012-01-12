@@ -3,7 +3,7 @@ require 'ramix/templates'
 require 'ramix/templates/builder'
 
 module Ramix
-	class AppGenerator < Thor::Group
+  class AppGenerator < Thor::Group
     
     class_option :source,           :type => :string, :aliases =>  Ramix::Source.aliases, :group => :ramix, :default => Ramix::Source.newest_version,
                                     :desc => Ramix::Source.desc
@@ -24,7 +24,7 @@ module Ramix
       # Invoke the rails application generator
       invoke Rails::Generators::AppGenerator
     end
-
+    
     protected
 
     def self.banner#:nodoc:
