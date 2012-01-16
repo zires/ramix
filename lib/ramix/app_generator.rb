@@ -1,14 +1,21 @@
 require 'thor/group'
 require 'ramix/templates'
 require 'ramix/templates/builder'
+require 'ramix/template'
 
 module Ramix
   class AppGenerator < Thor::Group
     
-    class_option :source,           :type => :string, :aliases =>  Ramix::Source.aliases, :group => :ramix, :default => Ramix::Source.newest_version,
-                                    :desc => Ramix::Source.desc
-    class_option :mongoid,          :type => :string, :group => :ramix, :default => Ramix::Mongoid.newest_version,
-                                    :desc => Ramix::Mongoid.desc
+    Dir.entries(Ramix::Template::DIR_PATH).each do |name|
+      next unless name =~ /.rb/
+      name = File.basename(name, '.rb')
+      template          = Ramix::Template.new(name)
+      options           = { :type => :string, :group => :ramix }
+      options[:aliases] = template.aliases if template.aliases
+      options[:desc]    = template.description if template.description
+      options[:default] = template.default if template.default
+      send 'class_option', name.to_sym, options
+    end
                                         
     # Overwrite class options help. Merge class options form rails
     def self.class_options_help(shell, groups={})
