@@ -1,19 +1,19 @@
-require 'thor/group'
-require 'ramix/templates'
-require 'ramix/templates/builder'
 require 'ramix/template'
+require 'ramix/builder'
 
 module Ramix
   class AppGenerator < Thor::Group
+
+    argument :app_path, :type => :string
     
     Dir.entries(Ramix::Template::DIR_PATH).each do |name|
       next unless name =~ /.rb/
       name = File.basename(name, '.rb')
       template          = Ramix::Template.new(name)
-      options           = { :type => :string, :group => :ramix }
-      options[:aliases] = template.aliases if template.aliases
-      options[:desc]    = template.description if template.description
-      options[:default] = template.default if template.default
+      options           = { :group => :ramix }
+      Ramix::Template::THOR_CLASS_OPTION.each do |opt|
+        options[opt.to_sym] = template.send(opt)
+      end
       send 'class_option', name.to_sym, options
     end
                                         
@@ -25,8 +25,8 @@ module Ramix
 
     def initialize(args, options, config)
       raise Thor::Error, "Application path should be given. For details run: ramix --help" if args[0].blank?
-      options << "-m"
-      options << build_template(options)
+      #options << "-m"
+      #options << build_template(options)
       super
       # Invoke the rails application generator
       invoke Rails::Generators::AppGenerator
@@ -35,17 +35,33 @@ module Ramix
     protected
 
     def self.banner#:nodoc:
-      "ramix new APP_PATH [options] \n or: ramix create TEMPLATE_PATH [options]"
+      "ramix new APP_PATH [options]"
     end
     
     # According to the options build template
     def build_template(options)
-      Ramix::Templates::Builder.new do
-        import Ramix::Source
-        import Ramix::Mongoid, Rails::VERSION::STRING
-        #import :source   if ARGV.include?('--source')
-        #import :mongoid  if ARGV.include?('--mongoid')
+      Ramix::Builder.new do
+        format_options(options.dup).each do |name, args|
+          import name, args
+        end
       end.run
+    end
+
+    # Example:
+    # format_options(['-f','--mongoid','-S','http://rubygems.org', 'http://rubycutter.com'])
+    #   #=> { 'f' => nil, 'mongoid' => nil, 'S' => ['http://rubygems.org', 'http://rubycutter.com'] }
+    #
+    def format_options(options)
+      opts, last_opt = Hash.new { |h,v| h[v] = [] } , nil
+      options.each do |opt|
+        if opt =~ /^-{1,2}(.+)/
+          opt[$1]  = nil
+          last_opt = $1
+        else
+          opt[last_opt] << opt
+        end
+      end
+      opts
     end
 
   end
