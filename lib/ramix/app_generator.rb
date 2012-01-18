@@ -5,11 +5,14 @@ module Ramix
   class AppGenerator < Thor::Group
 
     argument :app_path, :type => :string
-    
+
+    @@templates = {}
+
     Dir.entries(Ramix::Template::DIR_PATH).each do |name|
-      next unless name =~ /.rb/
-      name = File.basename(name, '.rb')
+      next unless name =~ /.rb$/
+      name              = File.basename(name, '.rb')
       template          = Ramix::Template.new(name)
+      @@templates[name] = template
       options           = { :group => :ramix }
       Ramix::Template::THOR_CLASS_OPTION.each do |opt|
         options[opt.to_sym] = template.send(opt)
@@ -23,11 +26,10 @@ module Ramix
       super(Thor::Shell::Basic.new, groups) #TODO - use color shell
     end
 
-    def initialize(args, options, config)
+    def initialize(args, opts, config)
       raise Thor::Error, "Application path should be given. For details run: ramix --help" if args[0].blank?
-      #options << "-m"
-      #options << build_template(options)
       super
+      add_template_option opts, options
       # Invoke the rails application generator
       invoke Rails::Generators::AppGenerator
     end
@@ -38,30 +40,28 @@ module Ramix
       "ramix new APP_PATH [options]"
     end
     
-    # According to the options build template
-    def build_template(options)
+    # According to the options and class_options to build template
+    def build_template(opts, class_options)
       Ramix::Builder.new do
-        format_options(options.dup).each do |name, args|
-          import name, args
+        class_options.each do |name, args|
+          import @@templates[name], args
         end
       end.run
     end
 
-    # Example:
-    # format_options(['-f','--mongoid','-S','http://rubygems.org', 'http://rubycutter.com'])
-    #   #=> { 'f' => nil, 'mongoid' => nil, 'S' => ['http://rubygems.org', 'http://rubycutter.com'] }
     #
-    def format_options(options)
-      opts, last_opt = Hash.new { |h,v| h[v] = [] } , nil
-      options.each do |opt|
-        if opt =~ /^-{1,2}(.+)/
-          opt[$1]  = nil
-          last_opt = $1
-        else
-          opt[last_opt] << opt
-        end
+    def add_template_option(opts, class_options)
+      insert_dependence_options(opts, class_options)
+      opts << '-m'
+      opts << build_template(opts, class_options)
+    end
+
+    #
+    def insert_dependence_options(opts, class_options)
+      class_options.each do |name, args|
+        next if @@templates[name].dependence.nil?
+        @@templates[name].dependence.each{ |d| opts << d }
       end
-      opts
     end
 
   end

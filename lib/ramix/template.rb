@@ -30,8 +30,8 @@ module Ramix
       RUBY
     end
     
-    def output
-      "# >====================== [#{name}] =======================<" + @output
+    def output(*args)
+      "# >====================== [#{name}] =======================<" + @output + "\n\n"
     end
 
   end
