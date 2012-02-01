@@ -4,7 +4,8 @@ Ramix is a command-line tool for initializing a new rails application.Just the s
 
 similar project: {rails_wizard}[https://github.com/intridea/rails_wizard]  {rails_apps_composer}[https://github.com/RailsApps/rails_apps_composer]
 
-= Usage
+== Usage
+
 
     ramix new ~/demo --mongoid
 
@@ -14,9 +15,11 @@ type
 
 You will find all options supported.
 
-= Getting Started
+== Getting Started
+
 
     gem install ramix
+    
 
 == Contributing to ramix
  
