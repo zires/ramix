@@ -6,6 +6,7 @@ similar project: {rails_wizard}[https://github.com/intridea/rails_wizard]  {rail
 
 == Usage
 
+The Usage like `rails new APP_PATH`
 
     ramix new ~/demo --mongoid
 
@@ -19,7 +20,7 @@ You will find all options supported.
 
 
     gem install ramix
-    
+
 
 == Contributing to ramix
  
