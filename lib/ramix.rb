@@ -1,7 +1,6 @@
 require 'rubygems' if RUBY_VERSION < '1.9'
 
 begin
-  require 'rails/version'
   require 'rails/generators'
   require 'rails/generators/rails/app/app_generator'
 rescue LoadError
