@@ -22,7 +22,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage    = "http://github.com/zires/ramix"
   gem.license     = "MIT"
   gem.summary     = %Q{new rails application generator}
-  gem.description = %Q{new rails application generator}
+  gem.description = %Q{Ramix is a command-line tool for initializing a new rails application.Just the same as rails but adding more additional options.}
   gem.email       = "zshuaibin@gmail.com"
   gem.authors     = ["Thierry Zires"]
   # dependencies defined in Gemfile
