@@ -12,15 +12,19 @@ end
 require 'rake'
 
 require 'jeweler'
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
+require 'ramix/version'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "ramix"
-  gem.homepage = "http://github.com/zires/ramix"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "zshuaibin@gmail.com"
-  gem.authors = ["Thierry Zires"]
+  gem.name        = "ramix"
+  gem.version     = Ramix::VERSION::STRING
+  gem.homepage    = "http://github.com/zires/ramix"
+  gem.license     = "MIT"
+  gem.summary     = %Q{new rails application generator}
+  gem.description = %Q{new rails application generator}
+  gem.email       = "zshuaibin@gmail.com"
+  gem.authors     = ["Thierry Zires"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
