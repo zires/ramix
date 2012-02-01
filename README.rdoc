@@ -6,7 +6,7 @@ similar project: {rails_wizard}[https://github.com/intridea/rails_wizard]  {rail
 
 === Usage
 
-The Usage like `rails new APP_PATH`
+The usage like <tt>rails new APP_PATH</tt>
 
     ramix new ~/demo --mongoid
 
