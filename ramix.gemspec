@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ramix}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Thierry Zires}]
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/ramix/helpers.rb",
     "lib/ramix/template.rb",
     "lib/ramix/version.rb",
+    "ramix.gemspec",
     "recipes/china.rb",
     "recipes/mongoid.rb",
     "test/fixtures/diff_recipe.rb",
@@ -50,29 +51,11 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<thor>, ["~> 0.14.6"])
-      s.add_runtime_dependency(%q<railties>, [">= 0"])
-      s.add_development_dependency(%q<yard>, ["~> 0.6.0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
-      s.add_development_dependency(%q<reek>, ["~> 1.2.8"])
     else
       s.add_dependency(%q<thor>, ["~> 0.14.6"])
-      s.add_dependency(%q<railties>, [">= 0"])
-      s.add_dependency(%q<yard>, ["~> 0.6.0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
-      s.add_dependency(%q<reek>, ["~> 1.2.8"])
     end
   else
     s.add_dependency(%q<thor>, ["~> 0.14.6"])
-    s.add_dependency(%q<railties>, [">= 0"])
-    s.add_dependency(%q<yard>, ["~> 0.6.0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
-    s.add_dependency(%q<reek>, ["~> 1.2.8"])
   end
 end
 
