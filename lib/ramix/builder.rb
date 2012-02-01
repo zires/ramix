@@ -8,7 +8,7 @@ module Ramix
 
     def initialize(default_template_path = nil, &block)
       @template_path = default_template_path || tempfile_path
-      @import = []
+      @import        = []
       instance_eval(&block) if block_given?
     end
 
@@ -16,9 +16,8 @@ module Ramix
       @import << proc { template.output(*args) }
     end
 
-    # run method accept content for creating template.
-    # It return a template path
-    #
+    # Write some useful methods and the content of recipe in the file.
+    # Return the path of the template.
     def run
       begin
         File.open(@template_path, "a+") do |file|
@@ -28,7 +27,7 @@ module Ramix
           file.write callbacks
         end
       rescue Exception => e
-        puts "Create template #{@template} error~~ #{e}"
+        puts "Create template #{@template} error~~ #{e.message}"
       end
       @template_path
     end

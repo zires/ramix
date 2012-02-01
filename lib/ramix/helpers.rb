@@ -1,5 +1,5 @@
 module Ramix
-  # A set of helper methods will append to template
+  # A set of helper methods will append to the template
   module Helpers
     
     def rails_version

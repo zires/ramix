@@ -9,7 +9,7 @@ module Ramix
     @@templates = {}
 
     Dir.entries(Ramix::Template::DIR_PATH).each do |name|
-      next unless name =~ /.rb$/
+      next unless name  =~ /.rb$/
       name              = File.basename(name, '.rb')
       template          = Ramix::Template.new(name)
       @@templates[name] = template
@@ -43,20 +43,18 @@ module Ramix
     # According to the options and class_options to build template
     def build_template(opts, class_options)
       Ramix::Builder.new do
-        class_options.each do |name, args|
-          import @@templates[name], args
-        end
+        class_options.each { |name, args| import @@templates[name], args }
       end.run
     end
 
-    #
+    # Add '-m' #{template} in the ARGV
     def add_template_option(opts, class_options)
       insert_dependence_options(opts, class_options)
       opts << '-m'
       opts << build_template(opts, class_options)
     end
 
-    #
+    # if the template recipe has some dependence options then add these into the opts.
     def insert_dependence_options(opts, class_options)
       class_options.each do |name, args|
         next if @@templates[name].dependence.nil?
