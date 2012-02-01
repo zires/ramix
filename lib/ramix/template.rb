@@ -10,8 +10,9 @@ module Ramix
 
     def initialize(name, path = nil)
       @name = name
+      @path = path || DIR_PATH
       begin
-        draft, attribute, @output = File.read( File.join(DIR_PATH, name + '.rb') ).split('---')
+        draft, attribute, @output = File.read( File.join(@path, name + '.rb') ).split('---')
         @attribute                = YAML.load(attribute)
       rescue
         @attribute, @output       = {}, "\n\ngem '#{name}'"
