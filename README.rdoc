@@ -2,7 +2,21 @@
 
 Ramix is a command-line tool for initializing a new rails application.Just the same as rails but adding more additional options.
 
-similar project: {rails_wizard}[https://github.com/intridea/rails_wizard] {rails_apps_composer}[https://github.com/RailsApps/rails_apps_composer]
+similar project: {rails_wizard}[https://github.com/intridea/rails_wizard]  {rails_apps_composer}[https://github.com/RailsApps/rails_apps_composer]
+
+== Usage
+
+    ramix new ~/demo --mongoid
+
+type 
+
+    ramix -h
+
+You will find all options supported.
+
+== Getting Started
+
+    gem install ramix
 
 == Contributing to ramix
  
