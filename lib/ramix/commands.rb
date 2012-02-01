@@ -4,7 +4,7 @@ ARGV << '--help' if ARGV.empty?
 if ARGV.first == "new"
   ARGV.shift
 else
-	ARGV.clear
+  ARGV.clear
   ARGV << '--help'
 end
 
