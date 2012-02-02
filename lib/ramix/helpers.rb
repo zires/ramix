@@ -23,8 +23,8 @@ module Ramix
 
     def before_callbacks
       <<-TEMPLATE
-        if File.exist?('config/initializers/wrap_parameters.rb')
-          gsub_file 'config/initializers/wrap_parameters.rb', "wrap_parameters format: [:json]", "wrap_parameters format => [:json]" if RUBY_VERSION < '1.9'
+        if File.exist?('config/initializers/wrap_parameters.rb') and RUBY_VERSION < '1.9'
+          gsub_file 'config/initializers/wrap_parameters.rb', "wrap_parameters format: [:json]", "wrap_parameters format => [:json]"
         end
       TEMPLATE
     end
