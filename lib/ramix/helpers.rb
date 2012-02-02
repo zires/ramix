@@ -12,13 +12,6 @@ module Ramix
       TEMPLATE
     end
 
-    def ruby_version
-      <<-TEMPLATE
-        # Check the version of ruby
-        gsub_file 'config/initializers/wrap_parameters.rb', "wrap_parameters format: [:json]", "wrap_parameters format => [:json]" if RUBY_VERSION < '1.9'
-      TEMPLATE
-    end
-
     def callback_functions
       <<-TEMPLATE
         @after_bundler_blocks = []
@@ -26,6 +19,14 @@ module Ramix
           @after_bundler_blocks << block
         end
         TEMPLATE
+    end
+
+    def before_callbacks
+      <<-TEMPLATE
+        if File.exist?('config/initializers/wrap_parameters.rb')
+          gsub_file 'config/initializers/wrap_parameters.rb', "wrap_parameters format: [:json]", "wrap_parameters format => [:json]" if RUBY_VERSION < '1.9'
+        end
+      TEMPLATE
     end
 
     def callbacks

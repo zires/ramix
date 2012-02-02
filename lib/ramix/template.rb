@@ -30,9 +30,14 @@ module Ramix
         end
       RUBY
     end
-    
+
     def output(*args)
-      "# >====================== [#{name}] =======================<" + @output + "\n\n"
+      args = args.join if type == 'string' or type == nil
+      <<-OUTPUT
+      # >====================== [#{name}] =======================<
+      instance_variable_set '@#{name}', '#{args}'
+      #{@output}
+      OUTPUT
     end
 
   end

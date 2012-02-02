@@ -21,9 +21,9 @@ module Ramix
       begin
         File.open(@template_path, "a+") do |file|
           file.write rails_version
-          file.write ruby_version
           file.write callback_functions
           @import.each{ |template|  file.write template.call }
+          file.write before_callbacks
           file.write callbacks
         end
       rescue Exception => e
