@@ -3,7 +3,6 @@ require 'ramix/helpers'
 module Ramix
 
   # Ramix::Builder be responsible for adding some useful methods on the top or the bottom of template.
-  # 
   class Builder
 
     def initialize(default_template_path = nil, &block)
