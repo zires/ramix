@@ -12,8 +12,8 @@ when /3.1/ then gem 'devise', '>= 2.0.0'
 end
 
 after_bundler do
-	say_wizard "Run devise install generator"
-	generate 'devise:install'
-	say_wizard "Run devise model generator #{@devise}"
-	generate "devise #{@devise}"
+  say_wizard "Run devise install generator"
+  generate 'devise:install'
+  say_wizard "Run devise model generator #{@devise}"
+  generate "devise #{@devise}"
 end

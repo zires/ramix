@@ -14,7 +14,7 @@ end
 gem 'bson_ext', '1.5.2'
 
 after_bundler do
-	say_wizard "Generate mongoid config file and remove database.yml"
+  say_wizard "Generate mongoid config file and remove database.yml"
   generate 'mongoid:config'
   remove_file 'config/database.yml'
 end
