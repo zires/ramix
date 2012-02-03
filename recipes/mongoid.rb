@@ -6,8 +6,8 @@ type: 'boolean'
 ---
 
 case rails_version
-when /3.0/ then gem 'mongoid', '2.0.2'
-when /3.1/ then gem 'mongoid', '2.3.4'
+when /3.0/ then gem 'mongoid', '2.2.5'
+when /3.1/ then gem 'mongoid', '2.4.3'
 end
 
 gem 'bson_ext', '1.5.2'
