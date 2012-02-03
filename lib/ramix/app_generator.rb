@@ -17,7 +17,11 @@ module Ramix
       Ramix::Template::THOR_CLASS_OPTION.each do |opt|
         options[opt.to_sym] = template.send(opt)
       end
+      
       send 'class_option', name.to_sym, options
+      unless template.type == "boolean"
+        send 'class_option', "skip_#{name}".to_sym, :type => :boolean, :default => false, :desc => "Don't create #{name}", :group => :ramix
+      end
     end
                                         
     # Overwrite class options help. Merge class options form rails
@@ -43,7 +47,7 @@ module Ramix
     # According to the options and class_options to build template
     def build_template(opts, class_options)
       Ramix::Builder.new do
-        class_options.each { |name, args| import @@templates[name], args }
+        class_options.each { |name, args| import @@templates[name], args unless @@templates[name].nil? or class_options["skip_#{name}".to_sym] }
       end.run
     end
 
@@ -57,9 +61,16 @@ module Ramix
     # if the template recipe has some dependence options then add these into the opts.
     def insert_dependence_options(opts, class_options)
       class_options.each do |name, args|
-        next if @@templates[name].dependence.nil?
+        next if @@templates[name].nil? or @@templates[name].dependence.nil?
         @@templates[name].dependence.each{ |d| opts << d }
       end
+    end
+
+    # Parse the options
+    # opts = ["-d", "mysql", "--home", "--china", "--omniauth", "renren", "facebook", "--devise", "admin"]
+    # parse_opts(opts)
+    #   #=> { "d" => "mysql", "home" => "home", "china" => true, "omniauth" => ["renren","facebook"], "devise" => "admin" }
+    def parse_opts(opts)
     end
 
   end

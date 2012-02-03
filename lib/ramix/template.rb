@@ -33,11 +33,12 @@ module Ramix
 
     def output(*args)
       args = args.join if type == 'string' or type == nil
-      <<-OUTPUT
-      # >====================== [#{name}] =======================<
-      instance_variable_set '@#{name}', '#{args}'
+      out_buffer = "# >====================== [#{name}] =======================<\n\n"
+      out_buffer << "instance_variable_set '@#{name}', '#{args}'\n\n" if args
+      <<-TEMPLATE
+      #{out_buffer}
       #{@output}
-      OUTPUT
+      TEMPLATE
     end
 
   end

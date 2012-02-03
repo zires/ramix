@@ -20,6 +20,7 @@ module Ramix
     def run
       begin
         File.open(@template_path, "a+") do |file|
+          file.write preparation_methods
           file.write rails_version
           file.write callback_functions
           @import.each{ |template|  file.write template.call }
