@@ -1,5 +1,6 @@
 ---
 name: 'china'
+aliases: '-c'
 desc: 'Special the chinese source path of Gemfile.'
 type: 'boolean'
 default: false
