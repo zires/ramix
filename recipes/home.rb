@@ -1,5 +1,6 @@
 ---
 name: 'home'
+aliases: '-H'
 desc: 'Generate a home controller and view.'
 type: 'string'
 default: 'home'

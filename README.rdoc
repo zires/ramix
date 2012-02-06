@@ -1,6 +1,6 @@
 = ramix
 
-Ramix is a command-line tool for initializing a new rails application.Just the same as rails but adding more additional options.
+Ramix is a command-line tool for initializing a new rails application. Just the same as rails but adding more additional options.
 
 similar project: {rails_wizard}[https://github.com/intridea/rails_wizard]  {rails_apps_composer}[https://github.com/RailsApps/rails_apps_composer]
 
@@ -8,13 +8,35 @@ similar project: {rails_wizard}[https://github.com/intridea/rails_wizard]  {rail
 
 The usage like <tt>rails new APP_PATH</tt>
 
-    ramix new ~/demo --mongoid
+    ramix new ~/demo -n mongoid
 
 type 
 
     ramix -h
 
 You will find all options supported.
+
+    Nosql options:
+      -n, [--nosql=NOSQL]  # Preconfigure for selected nosql database (options: mongoid/).
+
+    Authentication options:
+      -a, [--auth=AUTH]  # Preconfigure for selected authentication(options: devise/).
+                         # Default: devise
+          [--skip-auth]  # Don't use auth option.
+      -A, [--omniauth]   # OmniAuth is a flexible authentication system utilizing Rack middleware.
+
+    Generate options:
+          [--skip-home]  # Don't use home option.
+      -H, [--home=HOME]  # Generate a home controller and view.
+                         # Default: home
+
+    Front-end options:
+      -F, [--front=FRONT]  # Preconfigure for selected front-end template or plugin(options: bootstrap/h5bp/).Note that h5bp refer to html5-boilerplate.
+                           # Default: bootstrap
+          [--skip-front]   # Don't use front option.
+
+    Source options:
+      -c, [--china]  # Special the chinese source path of Gemfile.
 
 === Getting Started
 
