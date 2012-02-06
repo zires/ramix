@@ -67,12 +67,5 @@ module Ramix
       end
     end
 
-    # Parse the options
-    # opts = ["-d", "mysql", "--home", "--china", "--omniauth", "renren", "facebook", "--devise", "admin"]
-    # parse_opts(opts)
-    #   #=> { "d" => "mysql", "home" => "home", "china" => true, "omniauth" => ["renren","facebook"], "devise" => "admin" }
-    def parse_opts(opts)
-    end
-
   end
 end
