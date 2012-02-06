@@ -3,6 +3,7 @@ name: 'home'
 desc: 'Generate a home controller and view.'
 type: 'string'
 default: 'home'
+group: 'generate'
 ---
 say_wizard "Remove static files: index.html, rails.png"
 remove_file 'public/index.html'

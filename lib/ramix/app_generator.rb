@@ -13,14 +13,15 @@ module Ramix
       name              = File.basename(name, '.rb')
       template          = Ramix::Template.new(name)
       @@templates[name] = template
-      options           = { :group => :ramix }
+      options           = {}
+
       Ramix::Template::THOR_CLASS_OPTION.each do |opt|
         options[opt.to_sym] = template.send(opt)
       end
       
       send 'class_option', name.to_sym, options
-      unless template.type == "boolean"
-        send 'class_option', "skip_#{name}".to_sym, :type => :boolean, :default => false, :desc => "Don't create #{name}", :group => :ramix
+      unless template.type == "boolean" or template.default == false
+        send 'class_option', "skip_#{name}".to_sym, :type => :boolean, :default => false, :desc => "Don't use #{name} option.", :group => template.group
       end
     end
                                         

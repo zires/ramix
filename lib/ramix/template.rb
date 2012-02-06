@@ -4,7 +4,7 @@ module Ramix
   class Template
 
     DIR_PATH          = File.expand_path(File.dirname(__FILE__) + '/../../recipes')
-    THOR_CLASS_OPTION = %w(desc required default aliases type banner)
+    THOR_CLASS_OPTION = %w(desc required default aliases type banner group)
     SELF_ATTRIBUTE    = %w(dependence)
     ATTRIBUTE         = THOR_CLASS_OPTION + SELF_ATTRIBUTE
 
