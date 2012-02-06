@@ -31,8 +31,8 @@ You will find all options supported.
                          # Default: home
 
     Front-end options:
-      -F, [--front=FRONT]  # Preconfigure for selected front-end template or plugin(options: bootstrap/h5bp/).\
-                             Note that h5bp refer to html5-boilerplate.
+      -F, [--front=FRONT]  # Preconfigure for selected front-end template or plugin(options: \
+                             bootstrap/h5bp/).Note that h5bp refer to html5-boilerplate.
                            # Default: bootstrap
           [--skip-front]   # Don't use front option.
 
