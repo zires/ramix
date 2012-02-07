@@ -26,6 +26,10 @@ module Ramix
         def after_bundler(&block)
           @after_bundler_blocks << block
         end
+        @after_everything_blocks = []
+        def after_everything(&block)
+          @after_everything_blocks << block
+        end
         TEMPLATE
     end
 
@@ -40,9 +44,11 @@ module Ramix
         case rails_version
         when /3.0/
           gsub_file 'Gemfile', "gem 'mysql2'", "gem 'mysql2', '~>0.2.18'"
-        else
-          gsub_file 'Gemfile', "gem 'mysql2'", "gem 'mysql2', '~>0.2.18'"
         end
+
+        # Use unicorn as the web server
+        say_wizard('Use unicorn as the web server')
+        gsub_file 'Gemfile', "# gem 'unicorn'", "gem 'unicorn'"
       TEMPLATE
     end
 
@@ -51,6 +57,7 @@ module Ramix
         say_wizard 'Install bundle'
         run 'bundle install'
         @after_bundler_blocks.each{ |b| b.call }
+        @after_everything_blocks.each{ |b| b.call }
       TEMPLATE
     end
       

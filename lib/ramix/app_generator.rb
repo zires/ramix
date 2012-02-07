@@ -9,22 +9,22 @@ module Ramix
     @@templates = {}
 
     Dir.entries(Ramix::Template::DIR_PATH).each do |name|
-      next unless name  =~ /.rb$/
-      name              = File.basename(name, '.rb')
-      template          = Ramix::Template.new(name)
-      @@templates[name] = template
-      options           = {}
+      next unless name           =~ /.rb$/
+      name                       = File.basename(name, '.rb')
+      template                   = Ramix::Template.new(name)
+      @@templates[template.name] = template
+      options                    = {}
 
       Ramix::Template::THOR_CLASS_OPTION.each do |opt|
         options[opt.to_sym] = template.send(opt)
       end
       
-      send 'class_option', name.to_sym, options
+      send 'class_option', template.name.to_sym, options
       unless template.type == "boolean" or template.default == false
-        send 'class_option', "skip_#{name}".to_sym, :type => :boolean, :default => false, :desc => "Don't use #{name} option.", :group => template.group
+        send 'class_option', "skip_#{template.name}".to_sym, :type => :boolean, :default => false, :desc => "Don't use #{template.name} option.", :group => template.group
       end
     end
-                                        
+
     # Overwrite class options help. Merge class options form rails
     def self.class_options_help(shell, groups={})
       Rails::Generators::AppGenerator.class_options_help( Thor::Shell::Basic.new )
