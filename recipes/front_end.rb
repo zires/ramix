@@ -8,9 +8,9 @@ group: 'front-end'
 ---
 case @front
 when "bootstrap"
-  say_wizard "Install twitter-bootstrap-rails gem"
   case rails_version
-  when /3.1/
+  when /3.1/, /3.2/
+    say_wizard "Install twitter-bootstrap-rails gem"
     gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
     after_bundler do
       say_wizard "Run twitter-bootstrap-rails install generator"

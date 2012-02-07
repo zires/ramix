@@ -4,14 +4,14 @@ aliases: '-H'
 desc: 'Generate a home controller and view.'
 type: 'string'
 default: 'home'
-group: 'generate'
+group: 'general'
 ---
 say_wizard "Remove static files: index.html, rails.png"
 remove_file 'public/index.html'
 
 case rails_version
 when /3.0/ then remove_file 'public/images/rails.png'
-when /3.1/ then remove_file 'app/assets/images/rails.png'
+when /3.1/, /3.2/ then remove_file 'app/assets/images/rails.png'
 end
 
 after_bundler do
