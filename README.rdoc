@@ -4,11 +4,21 @@ Ramix is a command-line tool for initializing a new rails application. Just the 
 
 similar project: {rails_wizard}[https://github.com/intridea/rails_wizard]  {rails_apps_composer}[https://github.com/RailsApps/rails_apps_composer]
 
+=== Why?
+
+When i initialize a new rails application, i always need to find a authentication solution, remove unused index page, replace some other template languages, do some code hack in special rails version and so on. Of course, rails `-m` can do this, but if i need to do some small change, i must create a new template or use 'ask' in the template. The template will be long and unmaintainable. Ramix just wraps 'rails app_generator', so it can help you.
+
 === Usage
 
 The usage like <tt>rails new APP_PATH</tt>
 
-    ramix new ~/demo -n mongoid
+    ramix new ~/demo
+
+Will create a new rails application with authentication(devise and omniauth), new-index page.
+
+    ramix new ~/demo -n mongoid -l haml
+
+Will use mongoid as your database and use haml as your template.
 
 type 
 
@@ -16,28 +26,32 @@ type
 
 You will find all options supported.
 
+    General options:
+      -H, [--home=HOME]  # Generate a home controller and view.
+                         # Default: home
+          [--skip-home]  # Don't use home option.
+
     Nosql options:
       -n, [--nosql=NOSQL]  # Preconfigure for selected nosql database (options: mongoid/).
 
     Authentication options:
-      -a, [--auth=AUTH]  # Preconfigure for selected authentication(options: devise/).
-                         # Default: devise
-          [--skip-auth]  # Don't use auth option.
-      -A, [--omniauth]   # OmniAuth is a flexible authentication system utilizing Rack middleware.
-
-    Generate options:
-          [--skip-home]  # Don't use home option.
-      -H, [--home=HOME]  # Generate a home controller and view.
-                         # Default: home
-
-    Front-end options:
-      -F, [--front=FRONT]  # Preconfigure for selected front-end template or plugin(options: \
-                             bootstrap/h5bp/).Note that h5bp refer to html5-boilerplate.
-                           # Default: bootstrap
-          [--skip-front]   # Don't use front option.
+      -a, [--auth=AUTH]               # Preconfigure for selected authentication(options: devise/).
+                                      # Default: devise
+          [--skip-auth]               # Don't use auth option.
+      -A, [--omniauth=one two three]  # OmniAuth is a flexible authentication system utilizing Rack middleware.
+                                      # Default: google facebook twitter
+          [--skip-omniauth]           # Don't use omniauth option.
 
     Source options:
       -c, [--china]  # Special the chinese source path of Gemfile.
+
+    Front-end options:
+      -F, [--front=FRONT]  # Preconfigure for selected front-end template or plugin(options: bootstrap/h5bp/).Note that h5bp refer to html5-boilerplate.
+                           # Default: bootstrap
+          [--skip-front]   # Don't use front option.
+
+    Template language options:
+      -l, [--lang=LANG]  # Preconfigure for selected template language(options: haml/slim/).
 
 === Getting Started
 
