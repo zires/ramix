@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ramix}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Thierry Zires}]
-  s.date = %q{2012-02-01}
+  s.date = %q{2012-02-08}
   s.description = %q{Ramix is a command-line tool for initializing a new rails application.Just the same as rails but adding more additional options.}
   s.email = %q{zshuaibin@gmail.com}
   s.executables = [%q{ramix}]
@@ -32,8 +32,13 @@ Gem::Specification.new do |s|
     "lib/ramix/template.rb",
     "lib/ramix/version.rb",
     "ramix.gemspec",
+    "recipes/authentication.rb",
     "recipes/china.rb",
-    "recipes/mongoid.rb",
+    "recipes/front_end.rb",
+    "recipes/home.rb",
+    "recipes/nosql.rb",
+    "recipes/omniauth.rb",
+    "recipes/template_language.rb",
     "test/fixtures/diff_recipe.rb",
     "test/fixtures/recipe.rb",
     "test/helper.rb",
@@ -51,11 +56,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<thor>, ["~> 0.14.6"])
+      s.add_runtime_dependency(%q<hpricot>, [">= 0"])
     else
       s.add_dependency(%q<thor>, ["~> 0.14.6"])
+      s.add_dependency(%q<hpricot>, [">= 0"])
     end
   else
     s.add_dependency(%q<thor>, ["~> 0.14.6"])
+    s.add_dependency(%q<hpricot>, [">= 0"])
   end
 end
 
