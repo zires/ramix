@@ -6,7 +6,7 @@ similar project: {rails_wizard}[https://github.com/intridea/rails_wizard]  {rail
 
 === Why?
 
-When i initialize a new rails application, i always need to find a authentication solution, remove unused index page, replace some other template languages, do some code hack in special rails version and so on. Of course, rails `-m` can do this, but if i need to do some small change, i must create a new template or use 'ask' in the template. The template will be long and unmaintainable. Ramix just wraps 'rails app_generator', so it can help you.
+When i initialize a new rails application, i always need to find a authentication solution, remove unused index page, replace some other template languages, do some code hack in special rails version and so on. Of course, rails `-m` can do this, but if i need to do some small change, i must create a new template or use 'ask' in the template. The template will be long and unmaintainable. Ramix just wrapped 'rails app_generator' and also used template, so it can help you.
 
 === Usage
 
@@ -16,15 +16,16 @@ The usage like <tt>rails new APP_PATH</tt>
 
 Will create a new rails application with authentication(devise and omniauth), new-index page.
 
+
     ramix new ~/demo -n mongoid -l haml
 
-Will use mongoid as your database and use haml as your template.
+Will use mongoid as default database and use haml as default template.
 
 type 
 
     ramix -h
 
-You will find all options supported.
+You will find all options supported
 
     General options:
       -H, [--home=HOME]  # Generate a home controller and view.
