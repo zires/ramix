@@ -32,10 +32,8 @@ module Ramix
     end
 
     def output(*args)
-      out_buffer = "# >====================== [#{name}] =======================<\n\n"
-      out_buffer << "instance_variable_set '@#{name}', #{args.dup.pop.inspect}\n\n" if args
       <<-OUTPUT
-      #{out_buffer}
+      instance_variable_set '@#{name}', #{args.dup.pop.inspect}
       #{@output}
       OUTPUT
     end
