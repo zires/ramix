@@ -8,3 +8,4 @@ group: 'source'
 ---
 say_wizard "Replace gemfile source"
 gsub_file 'Gemfile', "source 'http://rubygems.org'", "source 'http://ruby.taobao.org/'"
+gsub_file 'Gemfile', "source 'https://rubygems.org'", "source 'http://ruby.taobao.org/'"

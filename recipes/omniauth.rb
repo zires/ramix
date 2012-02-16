@@ -25,23 +25,10 @@ gem 'omniauth'
 end
 
 after_bundler do
-  #say_wizard "Generate authorization model"
-  #generate :model, "Authorization provider:string user_id:integer uid:string -f"
   
   case @auth
   # For devise
   when 'devise'
-    if @nosql
-      # == Mongoid
-      begin
-        inject_into_class "app/models/user.rb", 'User', "  embeds_many :authorizations\n"
-        #inject_into_class "app/models/authorization.rb", 'Authorization', "  embedded_in :user, :inverse_of => :authorizations\n"
-      end if @nosql == 'mongoid'
-    else
-      # == ActiveRecord
-      inject_into_class "app/models/user.rb", 'User', "  has_many :authorizations\n"
-      #inject_into_class "app/models/authorization.rb", 'Authorization', "  belongs_to :user\n"
-    end
     gsub_file 'app/models/user.rb', /:recoverable, :rememberable, :trackable, :validatable/, ':recoverable, :rememberable, :trackable, :validatable, :omniauthable'
     
     insert_into_file 'config/initializers/devise.rb', :before => "# config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'\n" do
