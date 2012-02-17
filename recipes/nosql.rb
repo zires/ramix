@@ -6,6 +6,7 @@ dependence: ['-O']
 type: 'string'
 default: false
 group: 'nosql'
+order: 1
 ---
 
 case @nosql

@@ -5,6 +5,7 @@ desc: 'Preconfigure for selected authentication(options: devise/).'
 type: 'string'
 default: 'devise'
 group: 'authentication'
+order: 2
 ---
 
 case @auth

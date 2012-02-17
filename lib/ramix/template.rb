@@ -23,6 +23,10 @@ module Ramix
       @attribute['name'] || @name
     end
 
+    def order
+      @attribute['order'] || 0
+    end
+
     ATTRIBUTE.each do |attr|
       class_eval <<-RUBY
         def #{attr}

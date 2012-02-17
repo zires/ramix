@@ -12,7 +12,7 @@ module Ramix
     end
 
     def import(template, *args)
-      @import << proc { template.output(*args) }
+      @import << [template.order, proc { template.output(*args) }]
     end
 
     # Write some useful methods and the content of recipe in the file.
@@ -23,7 +23,7 @@ module Ramix
           file.write preparation_methods
           file.write rails_version
           file.write callback_functions
-          @import.each{ |template|  file.write template.call }
+          ordered_templates.each{ |template|  file.write template[1].call }
           file.write before_callbacks
           file.write callbacks
         end
@@ -38,6 +38,10 @@ module Ramix
     def tempfile_path
       require 'tempfile'
       Tempfile.new('template').path
+    end
+
+    def ordered_templates
+      @import.sort_by{ |t| t[0] }
     end
 
     include Ramix::Helpers

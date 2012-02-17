@@ -5,6 +5,7 @@ desc: 'OmniAuth is a flexible authentication system utilizing Rack middleware.'
 type: 'array'
 group: 'authentication'
 default: ['google', 'facebook', 'twitter']
+order: 3
 ---
 
 if @omniauth == ['china']
