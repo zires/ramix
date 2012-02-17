@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ramix}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Thierry Zires}]
-  s.date = %q{2012-02-08}
+  s.date = %q{2012-02-17}
   s.description = %q{Ramix is a command-line tool for initializing a new rails application.Just the same as rails but adding more additional options.}
   s.email = %q{zshuaibin@gmail.com}
   s.executables = [%q{ramix}]
